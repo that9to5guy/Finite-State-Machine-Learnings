@@ -32,12 +32,12 @@ cmake ..           # Configure project
 cmake --build .    # Build executable
 ```
 
-Output binary will be: `FiniteStateMachine_BT.exe`
+Output binary will be: `FSM_Module.exe`
 
 ## 📦 How to Run
 
 ```bash
-./FiniteStateMachine_BT.exe
+./FSM_Module.exe
 ```
 
 ## 🧹 Clean Build
