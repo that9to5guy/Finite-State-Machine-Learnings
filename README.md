@@ -13,21 +13,9 @@ using a base `State` interface and a `transitionTo()` mechanism.
 Pure virtual interface defining `enter_state()`, `update_state()`,
 and `get_state()` functions that all concrete states must implement.
 
-### ⚙️ Idle State
-Represents the system's default or waiting state.
-Useful for setting up initial conditions or fallback behavior.
+## 📁 Subprojects
 
-### 🔍 Search State
-Simulates a state where the system is actively scanning or processing.
-Can later be extended with real-world conditions or triggers.
-
-### 🛠️ Build System
-CMake-powered build pipeline that supports cross-platform compilation.
-Uses C++17 features like `std::shared_ptr`, RAII, and chrono delays.
-
-### 🧪 Future States (To Be Added)
-Plan to add more complex states like `PairState`, `ConnectState`, `ErrorState`, etc.,
-to simulate real FSM transitions such as retries, timeouts, or task completion.
+- [FSM_Bluetooth — Bluetooth State Machine](FSM_Bluetooth/README.md)
 
 ## 🧰 Requirements
 
