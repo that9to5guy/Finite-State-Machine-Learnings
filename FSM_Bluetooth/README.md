@@ -62,6 +62,7 @@ FSM_Bluetooth/
 ├── CMakeLists.txt
 ├── lib/
 │   └── common.hpp
+│   └── events.hpp
 └── src/
     ├── FSM.cpp / FSM.hpp
     ├── main.cpp
