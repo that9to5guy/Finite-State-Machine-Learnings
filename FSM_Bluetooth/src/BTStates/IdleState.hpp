@@ -17,4 +17,6 @@ class IdleState : public State {
         void enter_state(FSM& fsm) override;
 
         void update_state(FSM& fsm) override;
+
+        void handle_event(Event ev, FSM& fsm) override;
 };

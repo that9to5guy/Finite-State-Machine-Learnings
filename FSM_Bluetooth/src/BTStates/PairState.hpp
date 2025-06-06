@@ -14,11 +14,13 @@ class PairState : public State {
 
         ~PairState() {};
 
-        std::string get_state(void) const override;
-
         void get_pair_id(void);
+
+        std::string get_state(void) const override;
 
         void enter_state(FSM& fsm) override;
 
         void update_state(FSM& fsm) override;
+        
+        void handle_event(Event ev, FSM& fsm) override;
 };
