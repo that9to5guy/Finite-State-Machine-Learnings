@@ -6,6 +6,8 @@
 
 #pragma once
 #include "../lib/common.hpp"
+#include "../lib/events.hpp"
+
 // Forward Declaration
 class FSM;
 
@@ -20,4 +22,6 @@ class State {
         virtual void enter_state(FSM& fsm) = 0;
 
         virtual void update_state(FSM& fsm) = 0;
+
+        // virtual void handle_event(Event ev, FSM& fsm) = 0;
 };

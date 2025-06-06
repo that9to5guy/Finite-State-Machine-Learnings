@@ -8,7 +8,7 @@ This project simulates a basic FSM for Bluetooth operations—covering Idle, Sea
 
 ## 🧱 Core Components
 - **FSM Engine** — Manages state transitions
-- **State Interface** — Abstract base class with lifecycle methods like `enter_state`, `update_state`
+- **State Interface** — Abstract base class with lifecycle methods like `enter_state`, `update_state`, `handle_event`
 - **Bluetooth States**
   - `IdleState`
   - `SearchState`

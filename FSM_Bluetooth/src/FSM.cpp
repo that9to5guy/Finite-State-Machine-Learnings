@@ -1,6 +1,7 @@
 /* FSM Engine Class | Function Defns */
 
 #include "FSM.hpp"
+#include "./BTStates/IdleState.hpp"
 
 FSM::FSM() {
     std::cout << "Activating FSM . . . " << std::endl;
@@ -19,4 +20,9 @@ void FSM::transitionTo(std::shared_ptr<State> next_state) {
 
 void FSM::handle_state(void) {
     current_state->update_state(*this);
+}
+
+void FSM::dispatch_event(Event ev) {
+    // current_state->handle_event(ev, *this);
+    std::cout << "Dispatch Evennt : " << static_cast<int>(ev) << std::endl;
 }
