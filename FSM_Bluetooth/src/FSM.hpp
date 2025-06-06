@@ -1,7 +1,7 @@
 /* FSM Engine Class */
 #pragma once
 
-#include "IdleState.hpp"
+#include "State.hpp"
 
 class FSM {
     private:
@@ -15,4 +15,6 @@ class FSM {
         void transitionTo(std::shared_ptr<State> nextState);
 
         void handle_state(void);
+
+        void dispatch_event(Event ev);
 };
