@@ -26,3 +26,14 @@ void SearchState::update_state(FSM& fsm) {
         is_searching = false;
     }
 }
+
+void SearchState::handle_event(Event ev, FSM& fsm) {
+    if (ev == Event::BT_SEARCH_TIMEOUT) {
+        // Implement return to Idle
+        std::cout << "Handle Event in SearchState : " << static_cast<int>(ev) << std::endl;
+    }
+    if (ev == Event::BT_SELECT_DEVICE) {
+        // Implement go to Pair
+        std::cout << "Handle Event in SearchState : " << static_cast<int>(ev) << std::endl;
+    }
+}

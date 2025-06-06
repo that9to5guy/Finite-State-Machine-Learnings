@@ -26,3 +26,18 @@ void ConnectState::update_state(FSM& fsm) {
         is_connected = false;
     }
 }
+
+void ConnectState::handle_event(Event ev, FSM& fsm) {
+    if (ev == Event::BT_CONNECTED) {
+        // Implement stay in Connect
+        std::cout << "Handle Event in ConnectState : " << static_cast<int>(ev) << std::endl;
+    }
+    if (ev == Event::BT_CONNECTION_LOST) {
+        // Implement go to Idle
+        std::cout << "Handle Event in ConnectState : " << static_cast<int>(ev) << std::endl;
+    }
+    if (ev == Event::BT_DISCONNECT) {
+        // Implement go to Idle
+        std::cout << "Handle Event in ConnectState : " << static_cast<int>(ev) << std::endl;
+    }
+}

@@ -18,3 +18,10 @@ void IdleState::update_state(FSM& fsm) {
     std::this_thread::sleep_for(std::chrono::milliseconds(200));  // 200 ms delay
     fsm.transitionTo(std::make_shared<SearchState>());
 }
+
+void IdleState::handle_event(Event ev, FSM& fsm) {
+    if (ev == Event::BT_START_SEARCH) {
+        // Implement go to Search
+        std::cout << "Handle Event in IdleState : " << static_cast<int>(ev) << std::endl;
+    }
+}

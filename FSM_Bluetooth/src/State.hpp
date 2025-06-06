@@ -23,5 +23,5 @@ class State {
 
         virtual void update_state(FSM& fsm) = 0;
 
-        // virtual void handle_event(Event ev, FSM& fsm) = 0;
+        virtual void handle_event(Event ev, FSM& fsm) = 0;
 };

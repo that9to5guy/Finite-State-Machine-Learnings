@@ -23,6 +23,6 @@ void FSM::handle_state(void) {
 }
 
 void FSM::dispatch_event(Event ev) {
-    // current_state->handle_event(ev, *this);
-    std::cout << "Dispatch Evennt : " << static_cast<int>(ev) << std::endl;
+    std::cout << "Dispatch Event in FSM: " << static_cast<int>(ev) << std::endl;
+    current_state->handle_event(ev, *this);
 }

@@ -31,3 +31,18 @@ void PairState::update_state(FSM& fsm) {
         get_pair_id();
     }
 }
+
+void PairState::handle_event(Event ev, FSM& fsm) {
+    if (ev == Event::BT_PAIR_TIMEOUT) {
+        // Implement return to Search
+        std::cout << "Handle Event in PairState : " << static_cast<int>(ev) << std::endl;
+    }
+    if (ev == Event::BT_KEY_MATCHED) {
+        // Implement go to Connect
+        std::cout << "Handle Event in PairState : " << static_cast<int>(ev) << std::endl;
+    }
+    if (ev == Event::BT_KEY_INVALID) {
+        // Implement go to Idle
+        std::cout << "Handle Event in PairState : " << static_cast<int>(ev) << std::endl;
+    }
+}
