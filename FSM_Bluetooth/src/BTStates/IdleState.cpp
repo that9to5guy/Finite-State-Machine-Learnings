@@ -22,6 +22,10 @@ void IdleState::update_state(FSM& fsm) {
 void IdleState::handle_event(Event ev, FSM& fsm) {
     if (ev == Event::BT_START_SEARCH) {
         // Implement go to Search
-        std::cout << "Handle Event in IdleState : " << static_cast<int>(ev) << std::endl;
+        std::cout << "Start Searching for Devices .." << std::endl;
+        fsm.transitionTo(std::make_shared<SearchState>());
+    }
+    else {
+        std::cout << "Currently in Idle State .." << std::endl;
     }
 }

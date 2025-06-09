@@ -3,6 +3,8 @@
 #include "../FSM.hpp"
 #include "PairState.hpp"
 #include "ConnectState.hpp"
+#include "SearchState.hpp"
+#include "IdleState.hpp"
 
 std::string PairState::get_state(void) const {
     return state_name;
@@ -35,14 +37,20 @@ void PairState::update_state(FSM& fsm) {
 void PairState::handle_event(Event ev, FSM& fsm) {
     if (ev == Event::BT_PAIR_TIMEOUT) {
         // Implement return to Search
-        std::cout << "Handle Event in PairState : " << static_cast<int>(ev) << std::endl;
+        std::cout << "Pair Timeout in PairState ...." << static_cast<int>(ev) << std::endl;
+        fsm.transitionTo(std::make_shared<SearchState>());
     }
-    if (ev == Event::BT_KEY_MATCHED) {
+    else if (ev == Event::BT_KEY_MATCHED) {
         // Implement go to Connect
-        std::cout << "Handle Event in PairState : " << static_cast<int>(ev) << std::endl;
+        std::cout << "Key Matched in PairState ...." << static_cast<int>(ev) << std::endl;
+        fsm.transitionTo(std::make_shared<ConnectState>());
     }
-    if (ev == Event::BT_KEY_INVALID) {
+    else if (ev == Event::BT_KEY_INVALID) {
         // Implement go to Idle
-        std::cout << "Handle Event in PairState : " << static_cast<int>(ev) << std::endl;
+        std::cout << "Key Invalid in PairState ...." << static_cast<int>(ev) << std::endl;
+        fsm.transitionTo(std::make_shared<IdleState>());
+    }
+    else {
+        std::cout << "Currently in Pairing State ...." << std::endl;
     }
 }

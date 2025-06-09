@@ -3,6 +3,7 @@
 #include "../FSM.hpp"
 #include "SearchState.hpp"
 #include "PairState.hpp"
+#include "IdleState.hpp"
 
 std::string SearchState::get_state(void) const {
     return state_name;
@@ -30,10 +31,15 @@ void SearchState::update_state(FSM& fsm) {
 void SearchState::handle_event(Event ev, FSM& fsm) {
     if (ev == Event::BT_SEARCH_TIMEOUT) {
         // Implement return to Idle
-        std::cout << "Handle Event in SearchState : " << static_cast<int>(ev) << std::endl;
+        std::cout << "Search Timeout in SearchState ..." << static_cast<int>(ev) << std::endl;
+        fsm.transitionTo(std::make_shared<IdleState>());
     }
-    if (ev == Event::BT_SELECT_DEVICE) {
+    else if (ev == Event::BT_SELECT_DEVICE) {
         // Implement go to Pair
-        std::cout << "Handle Event in SearchState : " << static_cast<int>(ev) << std::endl;
+        std::cout << "Device Selected in SearchState ... " << static_cast<int>(ev) << std::endl;
+        fsm.transitionTo(std::make_shared<PairState>());
+    }
+    else {
+        std::cout << "Currently in Search State ..." << std::endl;
     }
 }
