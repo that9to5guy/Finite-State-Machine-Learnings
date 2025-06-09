@@ -64,6 +64,7 @@ rm -r build
 - Easy to plug into embedded-style simulations or logic flows.
 - Real-time `std::chrono` delay simulation available in states.
 - Meant for learning FSM concepts with real-world structure.
+- [Make FSM Diagrams](https://madebyevan.com/fsm/)
 
 ## 📝 License
 
