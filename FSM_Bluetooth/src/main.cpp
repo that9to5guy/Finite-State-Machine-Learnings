@@ -5,29 +5,44 @@
 int main()
 {
     FSM dev1;
-    int reps = 33;
+    int time_passed = 0;
+    const int time_limit_ms = 10000; // 10 seconds
+    const int check_delay_ms = 200;  // How often to check (200ms)
+    char input_key = 0;
+    bool event_detected = false;
 
-    dev1.dispatch_event(Event::BT_START_SEARCH);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    dev1.dispatch_event(Event::BT_SEARCH_TIMEOUT);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    dev1.dispatch_event(Event::BT_START_SEARCH);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    dev1.dispatch_event(Event::BT_SELECT_DEVICE);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    dev1.dispatch_event(Event::BT_PAIR_TIMEOUT);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    dev1.dispatch_event(Event::BT_SELECT_DEVICE);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    dev1.dispatch_event(Event::BT_KEY_MATCHED);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    dev1.dispatch_event(Event::BT_CONNECTION_LOST);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    while(1) {
+        time_passed = 0;
+        event_detected = false;
+        std::cout << "\nEnter Event ID : ";
+        while (time_passed < time_limit_ms) {
+            if (_kbhit()) {
+                input_key = _getch();
+                std::cout << "\nYou pressed: " << input_key << std::endl;
+                event_detected = true;
+                break;
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(check_delay_ms));
+            time_passed += check_delay_ms;
+        }
 
-    // while(reps--) {
-    //     dev1.handle_state();
-    //     std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 500 ms delay
-    // }
+        if (event_detected) {
+            if (input_key == 'Q') {
+                std::cout << "Quitig FSM System . . . . .\n" << std::endl;
+                break;
+            }
+            try {
+                dev1.dispatch_event(key_state_map.at(input_key));                
+            }
+            catch (const std::out_of_range& ex) {
+                std::cout << "Invalid Key Entered !!!" << std::endl;
+            }
+        }
+        else {
+            dev1.handle_state();
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    }
 
     return 0;
 }

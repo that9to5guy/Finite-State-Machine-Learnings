@@ -19,10 +19,25 @@ void FSM::transitionTo(std::shared_ptr<State> next_state) {
 }
 
 void FSM::handle_state(void) {
-    current_state->update_state(*this);
+    // current_state->update_state(*this);
+    switch (state_name_ID.at(current_state->get_state()))
+    {
+    case 1: // Search State Timeout
+        current_state->handle_event(Event::BT_SEARCH_TIMEOUT, *this);
+        break;
+    case 2: // Pair State Timeout
+        current_state->handle_event(Event::BT_PAIR_TIMEOUT, *this);
+        break;
+    default:
+        break;
+    }
 }
 
 void FSM::dispatch_event(Event ev) {
-    std::cout << "Dispatch Event in FSM: " << static_cast<int>(ev) << std::endl;
+    // std::cout << "Dispatch Event in FSM: " << static_cast<int>(ev) << std::endl;
+    if (ev == Event::BT_SYS_RESET) {
+        std::cout << "System Reset in FSM . . . " << std::endl;
+        this->transitionTo(std::make_shared<IdleState>());
+    }
     current_state->handle_event(ev, *this);
 }
